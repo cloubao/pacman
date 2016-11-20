@@ -199,7 +199,6 @@ namespace PacMan
         {
 
             List<int> openDirections;
-            bool atIntersection = false;
             bool moved = false;
 
             Ghost PM = this;
@@ -324,7 +323,7 @@ namespace PacMan
             // Was unable to get the ghost to move go to a random intersection
             //else if (openDirections.Count == 3)
             //{
-            //    Direction = openDirections[random.Next(0, openDirections.Count)];
+            //    
             //}
         }
 

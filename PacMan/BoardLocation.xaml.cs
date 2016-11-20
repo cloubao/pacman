@@ -110,7 +110,7 @@ namespace PacMan
         private void updateScore()
         {
             scoreCounter.OnEatBiscuit(dotValue);
-            mainWindow.debugx.Content = scoreCounter.Score.ToString();
+            mainWindow.debugx.Content = String.Format("Score: {0}",scoreCounter.Score);
 
             if(scoreCounter.UserWon())
             {

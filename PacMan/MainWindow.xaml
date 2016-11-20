@@ -9,8 +9,7 @@
         >
     <Canvas Margin="0,0,0,96">
         <local:GameBoard x:Name="GB" FocusManager.IsFocusScope="True" Height="641" Background="#FF292929" HorizontalAlignment="Left" VerticalAlignment="Top"></local:GameBoard>
-        <Label x:Name="debugx" Content="" Canvas.Left="39" Canvas.Top="568" Width="42" Background="Black" Foreground="White"/>
-        <Label x:Name="debugy" Content="" Canvas.Left="39" Canvas.Top="599" Width="42" Background="Black" Foreground="White"/>
+        <Label x:Name="debugx" Content="" Canvas.Left="39" Canvas.Top="568" Width="200" Background="Black" Foreground="White"/>
         
 
         <!--<Rectangle Width="36" Height="36" Margin="285,428,402,330" SnapsToDevicePixels="True">
