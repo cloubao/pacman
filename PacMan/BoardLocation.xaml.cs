@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,11 @@ namespace PacMan
     /// </summary>
     public partial class BoardLocation : UserControl
     {
+
+        // Dependencies
+        protected MainWindow mainWindow;
+        protected ScoreCounter scoreCounter;
+
         // pathcode 
         // 0 = none
         // 1 = normal dot
@@ -42,6 +48,8 @@ namespace PacMan
         public BoardLocation(int pCode)
         {
             InitializeComponent();
+
+            DependencyInjectionHelper.getGameComponent().inject<BoardLocation>(this);
 
             // Dots can be either normal (1) or special (2)
             if (pCode == 1 || pCode == 2)
@@ -69,7 +77,6 @@ namespace PacMan
             get { return biscuit; }
         }
 
-
         public int eatBiscuit()
         {
             int returnValue = 0;
@@ -80,11 +87,37 @@ namespace PacMan
             // Only allow the value to be recorded once
             if (dotValue > 0)
             {
+        
+                updateScore();
+
                 returnValue = dotValue;
                 dotValue = 0;
             }
 
             return dotValue;
+        }
+
+        private void updateScore()
+        {
+            if (scoreCounter.hasMaxScore() && scoreCounter.Score == scoreCounter.MaxScore)
+            {
+                Console.WriteLine("User won");
+            }
+            else
+            {
+                scoreCounter.Score += 1;
+            }
+
+            mainWindow.debugx.Content = scoreCounter.Score.ToString();
+        }
+
+        public class BoardLocationInjector : Injector<GameModule, BoardLocation>
+        {
+            public void inject(GameModule module, BoardLocation mObject)
+            {
+                mObject.mainWindow = module.ProvideMainWindow();
+                mObject.scoreCounter = module.ProvideScoreCounter();
+            }
         }
 
     }

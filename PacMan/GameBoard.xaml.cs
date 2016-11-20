@@ -48,6 +48,10 @@ namespace PacMan
         public GameBoard()
         {
             InitializeComponent();
+            
+            // We setup dependency injection when the game board is created
+            DependencyInjectionHelper.Init(((MainWindow)Application.Current.MainWindow));
+
             this.Focusable = true;
 
             // Initialize Pacman's direction as invalid
@@ -220,7 +224,7 @@ namespace PacMan
 
 
             // debug
-            Console.WriteLine("X= " + Canvas.GetLeft(PM) + "    Y= " + Canvas.GetTop(PM));
+            //Console.WriteLine("X= " + Canvas.GetLeft(PM) + "    Y= " + Canvas.GetTop(PM));
 
         }
 

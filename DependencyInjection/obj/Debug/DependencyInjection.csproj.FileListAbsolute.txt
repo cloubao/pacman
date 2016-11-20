@@ -1,0 +1,5 @@
+C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\DependencyInjection\bin\Debug\DependencyInjection.dll
+C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\DependencyInjection\bin\Debug\DependencyInjection.pdb
+C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\DependencyInjection\obj\Debug\DependencyInjection.csprojResolveAssemblyReference.cache
+C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\DependencyInjection\obj\Debug\DependencyInjection.dll
+C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\DependencyInjection\obj\Debug\DependencyInjection.pdb

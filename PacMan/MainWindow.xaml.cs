@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,5 @@ namespace PacMan
             // Call the Child Control KeyDown Function to move Pacman
             this.GB.GBKeyDown(e);
         }
-
     }
 }

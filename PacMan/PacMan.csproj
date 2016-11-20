@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DependencyInjectionHelper.cs" />
+    <Compile Include="ScoreCounter.cs" />
     <Page Include="BoardLocation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -88,6 +90,7 @@
     <Compile Include="GameBoard.xaml.cs">
       <DependentUpon>GameBoard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GameModule.cs" />
     <Compile Include="Ghost.xaml.cs">
       <DependentUpon>Ghost.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\CIS209Board.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DependencyInjection\DependencyInjection.csproj">
+      <Project>{48B65C4B-E5DF-43A3-AB08-BB98857DB646}</Project>
+      <Name>DependencyInjection</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
