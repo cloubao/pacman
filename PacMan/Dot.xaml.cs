@@ -22,6 +22,8 @@ namespace PacMan
 
     public partial class Dot : UserControl
     {
+
+
         //Dot Type:  1=Regular, 2=PowerUp
         private int dotType;
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,9 @@ namespace PacMan
     /// </summary>
     public partial class GameBoard : UserControl
     {
+
+        private ScoreCounter scoreCounter;
+
         // Movement timer for Pacman
         private DispatcherTimer PMmovementTimer;
         private int PMMovementWindow = 7; // This is used as a 'fudge factor' in determining if Pacman can move up/down/left/right to another space
@@ -44,14 +48,13 @@ namespace PacMan
                                     {0,2,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0 },   //11
                                     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } }; //12
 
-
         public GameBoard()
         {
             InitializeComponent();
             
             // We setup dependency injection when the game board is created
             DependencyInjectionHelper.Init(((MainWindow)Application.Current.MainWindow));
-
+            DependencyInjectionHelper.getGameComponent().inject(this);
             this.Focusable = true;
 
             // Initialize Pacman's direction as invalid
@@ -65,6 +68,22 @@ namespace PacMan
             
 
             bl = new BoardLocation[13, 27];
+
+            ResetBoardLocations();
+        }
+
+        internal void OnUserWon()
+        {
+            MessageBox.Show("You won");
+            ResetBoardLocations();
+        }
+
+
+        private void ResetBoardLocations()
+        {
+
+            // We reset the score counter
+            scoreCounter.Reset();
 
             // Initialize the Board Locations
             for (int i = 0; i < 13; i++)
@@ -84,8 +103,6 @@ namespace PacMan
                 }
             }
         }
-
-     
 
         // Keyboard movement of PacMan
         public void GBKeyDown(KeyEventArgs e)
@@ -226,6 +243,14 @@ namespace PacMan
             // debug
             //Console.WriteLine("X= " + Canvas.GetLeft(PM) + "    Y= " + Canvas.GetTop(PM));
 
+        }
+
+        public  class GameBoardInjector : Injector<GameModule, GameBoard>
+        {
+            public void inject(GameModule module, GameBoard mObject)
+            {
+                mObject.scoreCounter = module.ProvideScoreCounter();
+            }
         }
 
     }

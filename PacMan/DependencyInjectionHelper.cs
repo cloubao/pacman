@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using static PacMan.BoardLocation;
+using static PacMan.GameBoard;
 
 namespace PacMan
 {
@@ -26,6 +27,7 @@ namespace PacMan
         private static void addInjectors()
         {
             component.addInjector<BoardLocationInjector, BoardLocation>("BoardLocation", new BoardLocationInjector());
+            component.addInjector<GameBoardInjector, GameBoard>("GameBoard", new GameBoardInjector());
         }
 
         /**

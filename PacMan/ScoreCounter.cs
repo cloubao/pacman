@@ -8,20 +8,24 @@ namespace PacMan
 {
     public class ScoreCounter
     {
+        private int dotCount;
+
         private int maxScore;
         private int score;
 
         public ScoreCounter(int maxScore)
         {
             this.maxScore = maxScore;
+            Reset();
         }
 
         public ScoreCounter()
         {
             this.maxScore = -1;
+            Reset();
         }
 
-		public int MaxScore
+        public int MaxScore
         {
 			get
             {
@@ -38,16 +42,30 @@ namespace PacMan
             {
                 return score;
             }
-			set
+        }
+
+        public bool UserWon()
+        {
+                return dotCount == 0 || score == maxScore;
+        }
+        
+        public void OnEatBiscuit(int dotValue)
+        {
+            if(score == -1)
             {
-                score = value;
-                Console.WriteLine("New Score {0}", score);
+                score = 0;
+            }
+            else {
+                score += dotValue;
+                dotCount -= 1;
             }
         }
 
-        public bool hasMaxScore()
+        public void Reset()
         {
-            return maxScore != -1;
+            score = -1;
+            dotCount = 141;
         }
+
     }
 }

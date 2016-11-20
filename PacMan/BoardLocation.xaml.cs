@@ -16,11 +16,16 @@ using System.Windows.Shapes;
 
 namespace PacMan
 {
+
     /// <summary>
     /// Interaction logic for BoardLocation.xaml
     /// </summary>
     public partial class BoardLocation : UserControl
     {
+        public  const int PATH_CODE_NONE = 0;
+        public  const int PATH_CODE_NORMAL_DOT = 1;
+        public  const int PATH_CODE_SPECIAL_DOT = 2;
+        public  const int PATH_CODE_GHOST = 3;
 
         // Dependencies
         protected MainWindow mainWindow;
@@ -32,7 +37,7 @@ namespace PacMan
         // 2 = special dot
         // 3 = ghosts only
 
-
+    
         /*
          * The first ghost captured after an energizer has been eaten is always worth 200 points. 
          * Each additional ghost captured from the same energizer will then be worth twice as many points as the one before it—400, 800, and 1,600 points, 
@@ -87,7 +92,7 @@ namespace PacMan
             // Only allow the value to be recorded once
             if (dotValue > 0)
             {
-        
+                Console.WriteLine(dotValue);
                 updateScore();
 
                 returnValue = dotValue;
@@ -99,16 +104,14 @@ namespace PacMan
 
         private void updateScore()
         {
-            if (scoreCounter.hasMaxScore() && scoreCounter.Score == scoreCounter.MaxScore)
+            scoreCounter.OnEatBiscuit(dotValue);
+            mainWindow.debugx.Content = scoreCounter.Score.ToString();
+
+            if(scoreCounter.UserWon())
             {
-                Console.WriteLine("User won");
-            }
-            else
-            {
-                scoreCounter.Score += 1;
+                mainWindow.GB.OnUserWon() ;
             }
 
-            mainWindow.debugx.Content = scoreCounter.Score.ToString();
         }
 
         public class BoardLocationInjector : Injector<GameModule, BoardLocation>

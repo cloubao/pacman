@@ -15,8 +15,7 @@ namespace PacMan
         public GameModule(MainWindow mainWindow)
         {
             this.mainWindow = mainWindow;
-            this.scoreCounter = new ScoreCounter(142);
-            this.scoreCounter.Score = -1;
+            this.scoreCounter = new ScoreCounter();
         }
 
         public ScoreCounter ProvideScoreCounter()
