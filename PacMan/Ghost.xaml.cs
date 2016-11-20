@@ -24,7 +24,7 @@ namespace PacMan
     /// 
     public partial class Ghost : UserControl
     {
-
+        int spriteSheetRow = 2;
         Random random = new Random();
 
         private PositionTracker positionTracker;
@@ -91,6 +91,8 @@ namespace PacMan
             speed = 2;
             offsetX = 0;
             offsetY = 0;
+
+            spriteSheetRow = random.Next(1, 5);
         }
 
         public void StartTimer()
@@ -176,13 +178,12 @@ namespace PacMan
                     currentFrame = startFrame;
                 }
 
-                // Ghost is all in the first row (except his death)
                 offsetX = -(int)this.ActualWidth * currentFrame;
-                offsetY = 0;
+                offsetY = -spriteSheetRow * 42;
 
                 // This moves the background of the triangle to the appropriate 42x42 x y
-                //SpriteSheetOffset.X = offsetX;
-                //SpriteSheetOffset.Y = offsetY;
+                SpriteSheetOffset.X = offsetX;
+                SpriteSheetOffset.Y = offsetY;
 
                 // Reset the update flag to 0 
                 this.timeTillNextFrame = TimeSpan.FromSeconds(0);
@@ -197,7 +198,7 @@ namespace PacMan
         public void PMmovementTimer_Tick(object sender, EventArgs e)
         {
 
-            int[] openDirections;
+            List<int> openDirections;
             bool atIntersection = false;
             bool moved = false;
 
@@ -227,9 +228,9 @@ namespace PacMan
                     && Canvas.GetLeft(PM) > ((pmNextCol * PM.ActualWidth) - PMMovementWindow)      // Make sure we're pretty close to the path, will adjust during move
                     && Canvas.GetLeft(PM) < ((pmNextCol * PM.ActualWidth) + PMMovementWindow))
                 {
-                    moved = true;
                     Canvas.SetTop(PM, Canvas.GetTop(PM) - PM.Speed);
                     Canvas.SetLeft(PM, pmNextCol * PM.ActualHeight);
+                    moved = true;
                 }
 
             }
@@ -238,7 +239,6 @@ namespace PacMan
             else if (PM.Direction == 1)
             {
 
-
                 pmNextRow = (int)((Canvas.GetTop(PM) + PM.Speed + PM.ActualHeight) / PM.ActualHeight);
                 pmNextCol = (int)((Canvas.GetLeft(PM) + PM.ActualWidth / 2) / PM.ActualWidth);
 
@@ -246,8 +246,8 @@ namespace PacMan
                     && Canvas.GetLeft(PM) > ((pmNextCol * PM.ActualWidth) - PMMovementWindow)      // Make sure we're pretty close to the path, will adjust during move
                     && Canvas.GetLeft(PM) < ((pmNextCol * PM.ActualWidth) + PMMovementWindow))
                 {
-                    moved = true;
                     Canvas.SetTop(PM, Canvas.GetTop(PM) + PM.Speed);
+                    moved = true;
                 }
 
             }
@@ -262,8 +262,8 @@ namespace PacMan
                 // Check to see if pmNextCol is -1.. if it is teleport Ghost to the right side of the board!
                 if (pmNextCol == -1)
                 {
-                    moved = true;
                     Canvas.SetLeft(PM, gameBoard.ActualWidth - PM.ActualWidth - 1);
+                    moved = true;
                 }
                 else
                 if ((gamePath[pmNextRow, pmNextCol] == 1 || gamePath[pmNextRow, pmNextCol] == 2) // Make sure the next square is movable
@@ -271,6 +271,7 @@ namespace PacMan
                     && Canvas.GetTop(PM) < ((pmNextRow * PM.ActualHeight) + PMMovementWindow))
                 {
                     Canvas.SetLeft(PM, Canvas.GetLeft(PM) - PM.Speed);
+                    moved = true;
                 }
 
             }
@@ -285,16 +286,16 @@ namespace PacMan
                 // Check to see if NextCol is 27.. if it is teleport Ghost to the left side of the board!
                 if (pmNextCol == 27)
                 {
-                    moved = true;
                     Canvas.SetLeft(PM, 0);
+                    moved = true;
                 }
                 else
                 if ((gamePath[pmNextRow, pmNextCol] == 1 || gamePath[pmNextRow, pmNextCol] == 2)  // Make sure the next square is movable
                     && Canvas.GetTop(PM) > ((pmNextRow * PM.ActualHeight) - PMMovementWindow)      // Make sure we're pretty close to the path, will adjust during move
                     && Canvas.GetTop(PM) < ((pmNextRow * PM.ActualHeight) + PMMovementWindow))
                 {
-                    moved = true;
                     Canvas.SetLeft(PM, Canvas.GetLeft(PM) + PM.Speed);
+                    moved = true;
                 }
 
             }
@@ -305,48 +306,51 @@ namespace PacMan
             positionTracker.putGhostPosition(GetHashCode(),new int[] { currentRow, currentCol});
 
             openDirections = GetOpenDirections(currentRow, currentCol);
-            atIntersection = openDirections.Length > 2;
-             
-            if(!moved || atIntersection)
-            {
-                GoToOpenDirection(openDirections);
-            }
 
-
+            GoToOpenDirection(openDirections, moved);
 
         }
 
-        private void GoToOpenDirection(int[] openDirections)
+        private void GoToOpenDirection(List<int> openDirections, bool moved)
         {
-            if(openDirections.Length == 0)
+            if(openDirections.Count == 0)
             {
                 return;
             }
-            Direction = openDirections[random.Next(0, openDirections.Length)];
+            if (!moved)
+            {
+                Direction = openDirections[random.Next(0, openDirections.Count)];
+            }
+            // Was unable to get the ghost to move go to a random intersection
+            //else if (openDirections.Count == 3)
+            //{
+            //    Direction = openDirections[random.Next(0, openDirections.Count)];
+            //}
         }
 
-        private void GoToOpositeDirection()
+        private int GetOpositeDirection()
         {
-
+            int opositeDirection = -1;
             switch(Direction)
             {
                 case 0:
-                    Direction = 1;
+                    opositeDirection = 1;
                     break;
                 case 1:
-                    Direction = 0;
+                    opositeDirection = 0;
                     break;
                 case 2:
-                    Direction = 3;
+                    opositeDirection = 3;
                     break;
                 case 3:
-                    Direction = 2;
+                    opositeDirection = 2;
                     break;
             }
+            return opositeDirection;
 
         }
 
-        private int[] GetOpenDirections(int row, int col)
+        private List<int> GetOpenDirections(int row, int col)
         {
 
             List<int> openDirections = new List<int>();
@@ -357,25 +361,25 @@ namespace PacMan
                 int nextLeft = col -1 < 0 ? 0 : gamePath[row, col - 1];
                 int nextRight = col +1 >= 27 ? 0 :gamePath[row, col + 1];
 
-                if (nextTop != 0)
+                if (nextTop == 1)
                 {
                     openDirections.Add(0);
                 }
-                if (nextDown != 0)
+                if (nextDown == 1)
                 {
                     openDirections.Add(1);
                 }
-                if (nextRight != 0)
+                if (nextRight == 1)
                 {
                     openDirections.Add(3);
                 }
-                if (nextLeft != 0)
+                if (nextLeft == 1)
                 {
                     openDirections.Add(2);
                 }
 
            
-            return openDirections.ToArray();
+            return openDirections;
         }
 
         public class GhostInjector : Injector<GameModule, Ghost>
