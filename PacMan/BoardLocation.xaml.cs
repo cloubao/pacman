@@ -86,6 +86,11 @@ namespace PacMan
         {
             int returnValue = 0;
 
+            if(biscuit == null)
+            {
+                return returnValue;
+            }
+
             // Hide the biscuit
             biscuit.Visibility = Visibility.Hidden;
 

@@ -56,15 +56,15 @@ namespace PacMan
                 score = 0;
             }
             else {
-                score += dotValue;
                 dotCount -= 1;
+                score += dotValue;
             }
         }
 
         public void Reset()
         {
             score = -1;
-            dotCount = 141;
+            dotCount =141 - 4;
         }
 
     }

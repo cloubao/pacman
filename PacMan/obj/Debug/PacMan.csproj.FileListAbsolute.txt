@@ -92,11 +92,6 @@ E:\DTCC\cis209\Fall 2016\Project 2 - PacMan\Project 2 - PacMan\Project 2 - PacMa
 E:\DTCC\cis209\Fall 2016\Project 2 - PacMan\Project 2 - PacMan\Project 2 - PacMan\PacMan\PacMan\obj\Debug\PacMan.Properties.Resources.resources
 E:\DTCC\cis209\Fall 2016\Project 2 - PacMan\Project 2 - PacMan\Project 2 - PacMan\PacMan\PacMan\obj\Debug\PacMan.csproj.GenerateResource.Cache
 E:\DTCC\cis209\Fall 2016\Project 2 - PacMan\Project 2 - PacMan\Project 2 - PacMan\PacMan\PacMan\obj\Debug\PacMan.csprojResolveAssemblyReference.cache
-C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\bin\Debug\PacMan.exe.config
-C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\PacMan.exe
-C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\PacMan.pdb
-C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\bin\Debug\PacMan.exe
-C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\bin\Debug\PacMan.pdb
 C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\PacMan.csprojResolveAssemblyReference.cache
 C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\BoardLocation.g.cs
 C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\Dot.g.cs
@@ -108,6 +103,11 @@ C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\App
 C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\PacMan_MarkupCompile.cache
 C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\PacMan_MarkupCompile.lref
+C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\bin\Debug\PacMan.exe.config
+C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\bin\Debug\PacMan.exe
+C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\bin\Debug\PacMan.pdb
+C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\bin\Debug\DependencyInjection.dll
+C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\bin\Debug\DependencyInjection.pdb
 C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\BoardLocation.baml
 C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\Dot.baml
 C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\GameBoard.baml
@@ -117,5 +117,5 @@ C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\Pac
 C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\PacMan.g.resources
 C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\PacMan.Properties.Resources.resources
 C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\PacMan.csproj.GenerateResource.Cache
-C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\bin\Debug\DependencyInjection.dll
-C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\bin\Debug\DependencyInjection.pdb
+C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\PacMan.exe
+C:\Users\charl\Documents\Visual Studio 2015\Projects\PacMan\PacMan\obj\Debug\PacMan.pdb

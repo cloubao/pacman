@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using static PacMan.BoardLocation;
 using static PacMan.GameBoard;
+using static PacMan.Ghost;
+using static PacMan.Pacman;
 
 namespace PacMan
 {
@@ -28,6 +30,8 @@ namespace PacMan
         {
             component.addInjector<BoardLocationInjector, BoardLocation>("BoardLocation", new BoardLocationInjector());
             component.addInjector<GameBoardInjector, GameBoard>("GameBoard", new GameBoardInjector());
+            component.addInjector<PacmanInjector, Pacman>("Pacman", new PacmanInjector());
+            component.addInjector<GhostInjector, Ghost>("Ghost", new GhostInjector());
         }
 
         /**

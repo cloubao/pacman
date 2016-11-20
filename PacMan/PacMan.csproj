@@ -55,7 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllable.cs" />
     <Compile Include="DependencyInjectionHelper.cs" />
+    <Compile Include="PositionTracker.cs" />
     <Compile Include="ScoreCounter.cs" />
     <Page Include="BoardLocation.xaml">
       <SubType>Designer</SubType>

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// Dependency injection mechanism inspired by Dagger2 (Dependency Injection for Android/Java)
+// The Component hold injectors for injectable classes
 namespace DependencyInjection
 {
     public class Component<M> where M: IModule
